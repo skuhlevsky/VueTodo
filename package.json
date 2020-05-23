@@ -10,8 +10,9 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.4",
-    "express":"*",
+    "express": "*",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuex": "^3.3.0",
