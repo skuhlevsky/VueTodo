@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "postinstall": "npm run build",
-    "start": "node server.js"
+    "start": "HOST='0.0.0.0' PORT=80 npm run serve"
   },
   "dependencies": {
     "connect-history-api-fallback": "^1.6.0",
