@@ -84,7 +84,7 @@ export default {
     ...mapGetters(['noteStateCount', 'redoAction', 'undoAction', 'redoCount', 'undoCount']),
     ...mapMutations(['createTodo', 'createCurrentState', 'undoTodos', 'inActiveUndo', 'clearUndo', 'cancelEditing', 'deleteNote']),
     addTodo() {
-      var todoName = this.newTodo && this.newTodo.trim()
+      const todoName = this.newTodo && this.newTodo.trim()
       if (!todoName || todoName.length < 2) return
       this.createTodo({'id': this.id, 'name': todoName})
       this.newTodo = ''

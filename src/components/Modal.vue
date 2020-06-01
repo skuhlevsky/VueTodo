@@ -3,12 +3,12 @@
     <div class="v--modal-background-click">
       <div class="v--modal-box v--modal vue-dialog">
         <div class="dialog-content">
-          <div class="dialog-c-title">Delete this note?</div>
-          <div class="dialog-c-text">After deleting the note, you can't restore it.</div>
+          <div class="dialog-c-title">{{ dialogTitle }}</div>
+          <div class="dialog-c-text">{{ dialogText }}</div>
         </div>
         <div class="vue-dialog-buttons">
-          <button @click="$emit('close')" class="vue-dialog-button">Cancel</button>
-          <button @click="$emit('deleteNote')" class="vue-dialog-button">Delete</button>
+          <button @click="$emit('close')" class="vue-dialog-button">{{ dialogBntTextCancel }}</button>
+          <button @click="$emit('deleteNote')" class="vue-dialog-button">{{ dialogBntText }}</button>
         </div>
       </div>
     </div>
@@ -19,7 +19,11 @@
 export default {
   data() {
     return {
-      showModal: true
+      showModal: true,
+      dialogTitle: 'Delete this note?',
+      dialogText: 'After deleting the note, you can\'t restore it.',
+      dialogBntText: 'Delete',
+      dialogBntTextCancel: 'Cancel'
     }
   }
 }

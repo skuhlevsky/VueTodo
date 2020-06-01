@@ -18,7 +18,7 @@ export default {
   mutations: {
     createCurrentState(state, id) {
       state.noteState = []
-      let noteIndex = state.notes.findIndex(x => x.id == id)
+      const noteIndex = state.notes.findIndex(x => x.id == id)
       state.noteState.todos = []
       state.noteState.id = state.notes[noteIndex].id
       state.noteState.title = state.notes[noteIndex].title
@@ -27,8 +27,8 @@ export default {
       });
     },
     createTodo(state, {id, name}) {
-      let todoObj = { 'name': name }
-      let note = state.notes.findIndex(x => x.id == id)
+      const todoObj = { 'name': name }
+      const note = state.notes.findIndex(x => x.id == id)
       todoObj['id'] = state.notes[note].todos[0].id.substring(0, 24) + hash(36) + hash(36)
       todoObj['isDone'] = false
       todoObj['isDeleted'] = false
@@ -37,7 +37,7 @@ export default {
     updateNotes(state, {todosRes, name}) {
       // Create Note Object with new name
       // Add isDeleted flag
-      let noteObj = {
+      const noteObj = {
         id: state.notes.length,
         title: name,
         todos: todosRes.map(t => ({...t, isDeleted: false}))
@@ -45,14 +45,14 @@ export default {
       state.notes.push(noteObj)
     },
     undoTodos(state, {id, todoObj}) {
-      let note = state.notes.findIndex(x => x.id == id)
-      let todoIndex = state.notes[note].todos.findIndex(x => x.id == todoObj.obj.id)
+      const note = state.notes.findIndex(x => x.id == id)
+      const todoIndex = state.notes[note].todos.findIndex(x => x.id == todoObj.obj.id)
       state.notes[note].todos[todoIndex].name = todoObj.obj.name
       state.notes[note].todos[todoIndex].isDone = todoObj.obj.isDone
       state.notes[note].todos[todoIndex].isDeleted = todoObj.obj.isDeleted
     },
     cancelEditing(state) {
-      let noteIndex = state.notes.findIndex(x => x.id == state.noteState.id)
+      const noteIndex = state.notes.findIndex(x => x.id == state.noteState.id)
       state.notes[noteIndex].title = state.noteState.title
       state.notes[noteIndex].todos.forEach(function (obj, i) {
         obj.name = state.noteState.todos[i].name
@@ -61,11 +61,11 @@ export default {
       });
     },
     deleteTodo(state, {id, todoObj}) {
-      let note = state.notes.findIndex(x => x.id == id)
-      state.notes[note].todos.find( t => { return t.id === todoObj.id }).isDeleted = true
+      const noteIndex = state.notes.findIndex(x => x.id == id)
+      state.notes[noteIndex].todos.find( t => { return t.id === todoObj.id }).isDeleted = true
     },
     deleteNote(state, id) {
-      let noteIndex = state.notes.findIndex(x => x.id == id)
+      const noteIndex = state.notes.findIndex(x => x.id == id)
       state.notes.splice(noteIndex, 1)
     }
   },
