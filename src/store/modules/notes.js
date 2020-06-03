@@ -18,21 +18,21 @@ export default {
   mutations: {
     createCurrentState(state, id) {
       state.noteState = []
-      const noteIndex = state.notes.findIndex(x => x.id == id)
+      const currentNote = state.notes.find(x => x.id == id)
       state.noteState.todos = []
-      state.noteState.id = state.notes[noteIndex].id
-      state.noteState.title = state.notes[noteIndex].title
-      state.notes[noteIndex].todos.forEach(function (obj, i) {
-        state.noteState.todos.push({...state.notes[noteIndex].todos[i]})
+      state.noteState.id = currentNote.id
+      state.noteState.title = currentNote.title
+      currentNote.todos.forEach(function (obj, i) {
+        state.noteState.todos.push({...currentNote.todos[i]})
       });
     },
     createTodo(state, {id, name}) {
       const todoObj = { 'name': name }
-      const noteIndex = state.notes.findIndex(x => x.id == id)
-      todoObj['id'] = state.notes[noteIndex].todos[0].id.substring(0, 24) + hash(36) + hash(36)
+      const currentNote = state.notes.find(x => x.id == id)
+      todoObj['id'] = currentNote.todos[0].id.substring(0, 24) + hash(36) + hash(36)
       todoObj['isDone'] = false
       todoObj['isDeleted'] = false
-      state.notes[noteIndex].todos.push(todoObj)
+      currentNote.todos.push(todoObj)
     },
     updateNotes(state, {todosRes, name}) {
       // Create Note Object with new name
