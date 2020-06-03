@@ -45,16 +45,16 @@ export default {
       state.notes.push(noteObj)
     },
     undoTodos(state, {id, todoObj}) {
-      const noteIndex = state.notes.findIndex(x => x.id == id)
-      const todoIndex = state.notes[noteIndex].todos.findIndex(x => x.id == todoObj.obj.id)
-      state.notes[noteIndex].todos[todoIndex].name = todoObj.obj.name
-      state.notes[noteIndex].todos[todoIndex].isDone = todoObj.obj.isDone
-      state.notes[noteIndex].todos[todoIndex].isDeleted = todoObj.obj.isDeleted
+      const currentNote = state.notes.find(x => x.id == id)
+      const currentTodo = currentNote.todos.find(x => x.id == todoObj.obj.id)
+      currentTodo.name = todoObj.obj.name
+      currentTodo.isDone = todoObj.obj.isDone
+      currentTodo.isDeleted = todoObj.obj.isDeleted
     },
     cancelEditing(state) {
-      const noteIndex = state.notes.findIndex(x => x.id == state.noteState.id)
-      state.notes[noteIndex].title = state.noteState.title
-      state.notes[noteIndex].todos.forEach(function (obj, i) {
+      const currentNote = state.notes.find(x => x.id == state.noteState.id)
+      currentNote.title = state.noteState.title
+      currentNote.todos.forEach(function (obj, i) {
         obj.name = state.noteState.todos[i].name
         obj.isDone = state.noteState.todos[i].isDone
         obj.isDeleted = state.noteState.todos[i].isDeleted
