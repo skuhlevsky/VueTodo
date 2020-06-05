@@ -40,7 +40,7 @@ export default {
   components: {
     TodoList
   },
-  async mounted() {
+  mounted() {
     if (!this.notesCount) {
       this.fetchNotes('First task')
       this.fetchNotes('Second task')
