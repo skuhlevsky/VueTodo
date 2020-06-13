@@ -36,7 +36,7 @@
     <button @click="undo()" :disabled="!isUndo" :class="{ btn__geen: isUndo }" class="btn">Undo &#11148;</button>
     <button @click="cancelEditingNote()" :disabled="!isCancelled" :class="{ btn__red: isCancelled }" class="btn">Cancel</button>
     <button @click="saveNote()" class="btn btn__geen">Save &#11088;</button>
-    <button @click="openModal()" class="btn btn__red">Delete 😲</button>
+    <button @click="openModal()" class="btn btn__red">Delete</button>
 
     <Modal 
       v-if="showModal"

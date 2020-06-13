@@ -21,7 +21,7 @@
 
     </div>
 
-    <button @click="addNote()" class="btn btn__geen">Add New Note</button>
+    <button @click="addNote()" class="btn btn__geen">New Note</button>
 
   </div>
 </template>
