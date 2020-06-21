@@ -2,7 +2,9 @@
   <div>
     <div v-for="note of allNotes" :key="note.id" class="note-area">
       <div class="note-title">
-        <router-link :to="{ name: 'note', params: { id: note.id } }">{{ note.title }}</router-link>
+        <router-link :to="{ name: 'note', params: { id: note.id } }">{{
+          note.title
+        }}</router-link>
       </div>
 
       <TodoList
@@ -19,24 +21,25 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import TodoList from "@/components/TodoList";
+import { mapActions, mapGetters } from 'vuex';
+import TodoList from '@/components/TodoList';
 export default {
-  computed: mapGetters(["allNotes", "notesCount"]),
+  computed: mapGetters(['allNotes', 'notesCount']),
   methods: {
-    ...mapActions(["fetchNotes"]),
+    ...mapActions(['fetchNotes']),
+
     addNote() {
-      this.fetchNotes("New Task");
-    }
+      this.fetchNotes('New Task');
+    },
   },
   components: {
-    TodoList
+    TodoList,
   },
   mounted() {
     if (!this.notesCount) {
-      this.fetchNotes("First task");
-      this.fetchNotes("Second task");
+      this.fetchNotes('First task');
+      this.fetchNotes('Second task');
     }
-  }
+  },
 };
 </script>
